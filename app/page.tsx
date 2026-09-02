@@ -48,7 +48,7 @@ export default function Home() {
     <section className="section about" id="sobre">
       <div className="section-label"><span>01</span><p>sobre</p></div>
       <div className="about-content">
-        <p className="lead">Desenvolvedor .NET e estudante de Ciência da Computação.</p>
+        <p className="lead">Desenvolvedor .NET</p>
         <div className="about-grid">
           <p>Atualmente atuo com desenvolvimento de sistemas e suporte técnico N2 na Secretaria de Segurança Pública do Estado do Amazonas. Participo da criação e evolução de aplicações corporativas Web, Mobile e backend, da modelagem de dados à integração entre interfaces e APIs.</p>
           <p>Minha experiência é concentrada no ecossistema .NET, com ASP.NET Core, Entity Framework Core e .NET MAUI, apoiada por PostgreSQL e Docker. Busco aplicar Clean Architecture, testes e boas práticas para criar soluções confiáveis, organizadas e preparadas para evoluir.</p>
