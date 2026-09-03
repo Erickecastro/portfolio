@@ -1,0 +1,84 @@
+@page "/"
+
+<PageTitle>Ericke Castro | Desenvolvedor .NET</PageTitle>
+
+<main>
+    <header class="site-header">
+        <a class="brand" href="#inicio" aria-label="Ir para o início"><span>~/</span> ericke</a>
+        <nav aria-label="Navegação principal"><a href="#sobre">sobre</a><a href="#stack">stack</a><a href="#projetos">projetos</a><a href="#contato">contato</a></nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero-copy">
+            <p class="eyebrow">ERICKE CASTRO / AMAZONAS, BRASIL</p>
+            <h1>Fullstack .NET<br />Software Developer<span class="cursor" aria-hidden="true">_</span></h1>
+            <div class="hero-actions"><a class="button solid" href="#projetos">./ver-projetos</a><a class="button" href="Curriculo-Ericke-Castro.pdf" download>download --curriculo</a></div>
+        </div>
+        <div class="terminal" aria-label="Resumo profissional em formato de terminal">
+            <div class="terminal-bar"><span>ericke@portfolio:~</span><span>[—][□][×]</span></div>
+            <div class="terminal-body">
+                <p><span>ericke:$~</span> whoami</p><p class="output">Ericke Castro</p>
+                <p><span>ericke:$~</span> cat focus.txt</p><p class="output">.NET · Web APIs · Mobile · Software Architecture</p>
+                <p><span>ericke:$~</span> systemctl status career</p><p class="output">● active — building reliable software</p>
+                <p class="prompt"><span>ericke:$~</span> <i aria-hidden="true" /></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about" id="sobre">
+        <div class="section-label"><span>01</span><p>sobre</p></div>
+        <div class="about-content">
+            <p class="lead">Desenvolvedor .NET</p>
+            <div class="about-grid">
+                <p>Atualmente atuo com desenvolvimento de sistemas e suporte técnico N2 na Secretaria de Segurança Pública do Estado do Amazonas. Participo da criação e evolução de aplicações corporativas Web, Mobile e backend, da modelagem de dados à integração entre interfaces e APIs.</p>
+                <p>Minha experiência é concentrada no ecossistema .NET, com ASP.NET Core, Entity Framework Core e .NET MAUI, apoiada por PostgreSQL e Docker. Busco aplicar Clean Architecture, testes e boas práticas para criar soluções confiáveis, organizadas e preparadas para evoluir.</p>
+            </div>
+            <div class="facts" aria-label="Informações rápidas"><div><span>formação</span><strong>Ciência da Computação</strong></div><div><span>idiomas</span><strong>Português · Inglês</strong></div><div><span>atuação</span><strong>Web · Backend · Mobile</strong></div></div>
+        </div>
+    </section>
+
+    <section class="section" id="stack">
+        <div class="section-label"><span>02</span><p>stack</p></div>
+        <div class="skill-list">@foreach (var skill in Skills) { <div class="skill-row"><h3>@skill.Category</h3><div>@foreach (var item in skill.Items) { <span>@item</span> }</div></div> }</div>
+    </section>
+
+    <section class="section projects-section" id="projetos">
+        <div class="section-label"><span>03</span><p>projetos</p></div>
+        <div class="projects">@foreach (var project in Projects) { <article class="project">
+            <div class="project-index">@project.Index</div>
+            <div class="project-main"><div class="project-heading"><h2>@project.Name</h2><span>@project.Status</span></div><p class="project-description">@project.Description</p><p class="project-detail">@project.Detail</p><div class="tags">@foreach (var tech in project.Stack) { <span>@tech</span> }</div></div>
+            <a class="project-link" href="@project.Href" target="_blank" rel="noreferrer" aria-label="Abrir @project.Name no GitHub">↗</a>
+        </article> }</div>
+    </section>
+
+    <section class="contact" id="contato">
+        <div class="contact-heading"><p class="eyebrow">CONTATO / NOVAS CONEXÕES</p></div>
+        <div class="contact-grid">
+            <a href="mailto:erickevh@hotmail.com"><ContactIcon Type="ContactType.Email" /><span><small>e-mail</small><strong>erickevh@hotmail.com</strong></span><b>↗</b></a>
+            <a href="https://github.com/Erickecastro" target="_blank" rel="noreferrer"><ContactIcon Type="ContactType.GitHub" /><span><small>github</small><strong>@@Erickecastro</strong></span><b>↗</b></a>
+            <a href="https://www.linkedin.com/in/ericke-castro/" target="_blank" rel="noreferrer"><ContactIcon Type="ContactType.LinkedIn" /><span><small>linkedin</small><strong>Ericke Castro</strong></span><b>↗</b></a>
+            <a href="Curriculo-Ericke-Castro.pdf" download><ContactIcon Type="ContactType.Resume" /><span><small>currículo</small><strong>Baixar PDF</strong></span><b>↘</b></a>
+        </div>
+    </section>
+    <footer><p>© 2026 Ericke Castro</p><p>Fim :)</p><a href="#inicio">voltar ao topo ↑</a></footer>
+</main>
+
+@code {
+    private static readonly Skill[] Skills =
+    [
+        new("plataforma .net", ["C#", ".NET 10", "ASP.NET Core", "Entity Framework Core", "ASP.NET MVC", ".NET MAUI"]),
+        new("dados", ["PostgreSQL", "SQLite", "LINQ"]),
+        new("architecture", ["Clean Architecture", "SOLID", "MVVM", "APIs REST", "Repository Pattern", "Dependency Injection"]),
+        new("quality + tools", ["xUnit", "Moq", "FluentValidation", "Serilog", "Docker", "Git", "GitHub", "Swagger / OpenAPI", "JWT"])
+    ];
+
+    private static readonly Project[] Projects =
+    [
+        new("01", "Vaguei", "em desenvolvimento", "Plataforma que interpreta currículos, estrutura o perfil profissional e prepara a busca e classificação de vagas por compatibilidade.", "Parser para ODT, DOCX, PDF e TXT, análise de competências e arquitetura modular preparada para múltiplas fontes de vagas.", ["C#", ".NET 10", "LINQ", "xUnit", "Regex", "XML"], "https://github.com/Erickecastro/Vaguei"),
+        new("02", "AssetFlow", "em desenvolvimento", "Sistema corporativo multiplataforma para centralizar inventário e acompanhar o ciclo de vida de ativos de TI.", "Gestão patrimonial, histórico de movimentações, API REST e aplicativo móvel sob Clean Architecture e MVVM.", ["ASP.NET Core", ".NET MAUI", "EF Core", "PostgreSQL", "JWT", "Docker"], "https://github.com/Erickecastro/AssetFlow"),
+        new("03", "FinTrack", "em desenvolvimento", "Sistema de finanças pessoais para organizar receitas, despesas e categorias, com insights financeiros assistidos por IA.", "Backend Web API, cliente .NET MAUI e integração planejada com Gemini, com validação, observabilidade e testes.", ["ASP.NET Core", ".NET MAUI", "PostgreSQL", "Gemini API", "xUnit", "Moq"], "https://github.com/Erickecastro/FinTrack")
+    ];
+
+    private sealed record Skill(string Category, string[] Items);
+    private sealed record Project(string Index, string Name, string Status, string Description, string Detail, string[] Stack, string Href);
+}

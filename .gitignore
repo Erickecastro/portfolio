@@ -1,6 +1,8 @@
-node_modules/
-.next/
-out/
-.env*
-npm-debug.log*
-.DS_Store
+bin/
+obj/
+.vs/
+*.user
+*.suo
+.dotnet/
+output/
+dotnet-install.sh
