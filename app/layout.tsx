@@ -1,6 +1,3 @@
-import type { Metadata } from "next";
-import "./globals.css";
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://ericke-castro.pages.dev"),
 
@@ -18,12 +15,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ericke Castro | Desenvolvedor .NET",
     description:
-      "Projetos, experiências e competências no ecossistema .NET.",
+      "Portfólio de Ericke Castro, desenvolvedor Fullstack .NET especializado em aplicações Web, APIs REST e soluções multiplataforma.",
     url: "/",
     siteName: "Portfólio | Ericke Castro",
     locale: "pt_BR",
     type: "website",
-
     images: [
       {
         url: "/portfolio-preview.png",
@@ -38,19 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ericke Castro | Desenvolvedor .NET",
     description:
-      "Projetos, experiências e competências no ecossistema .NET.",
+      "Portfólio de Ericke Castro, desenvolvedor Fullstack .NET especializado em aplicações Web, APIs REST e soluções multiplataforma.",
     images: ["/portfolio-preview.png"],
   },
 };
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="pt-BR">
-      <body className="antialiased">{children}</body>
-    </html>
-  );
-}
