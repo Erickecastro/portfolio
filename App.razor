@@ -1,11 +1,12 @@
 <Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
     </Found>
     <NotFound>
-        <PageTitle>Página não encontrada | Ericke Castro</PageTitle>
         <LayoutView Layout="@typeof(Layout.MainLayout)">
-            <main class="not-found"><h1>Página não encontrada</h1><a href="/">voltar ao início</a></main>
+            <PageMetadata Title="Página não encontrada | Ericke Castro" Description="A página solicitada não existe neste portfólio." Path="/" NoIndex="true" />
+            <main class="not-found" id="conteudo" tabindex="-1"><h1>Página não encontrada</h1><a class="button" href="/">voltar ao início</a></main>
         </LayoutView>
     </NotFound>
 </Router>
