@@ -1,0 +1,25 @@
+@using Microsoft.AspNetCore.Components
+@using Portfolio.Content
+@using Portfolio.Pages
+@using Portfolio.Shared
+@using Portfolio.Layout
+
+<MainLayout Body="PageBody" />
+
+@code {
+    [Parameter, EditorRequired] public string Route { get; set; } = "/";
+
+    private RenderFragment PageBody => builder =>
+    {
+        if (Route == "/")
+        {
+            builder.OpenComponent<Home>(0);
+        }
+        else
+        {
+            builder.OpenComponent<ProjectDetails>(0);
+            builder.AddAttribute(1, "CurrentProject", PortfolioContent.FeaturedProjects.Single(project => project.Path == Route));
+        }
+        builder.CloseComponent();
+    };
+}
