@@ -6,3 +6,10 @@ obj/
 .dotnet/
 output/
 dotnet-install.sh
+node_modules/
+.wrangler/
+.env
+.env.*
+!.env.example
+scripts/reports/
+/Curriculo Ericke Manaus.pdf
