@@ -1,84 +1,123 @@
 @page "/"
 
-<PageTitle>Ericke Castro | Desenvolvedor .NET</PageTitle>
+<PageMetadata Title="@PortfolioContent.Title" Description="@PortfolioContent.Description" Path="/" />
 
-<main>
-    <header class="site-header">
-        <a class="brand" href="#inicio" aria-label="Ir para o início"><span>~/</span> ericke</a>
-        <nav aria-label="Navegação principal"><a href="#sobre">sobre</a><a href="#stack">stack</a><a href="#projetos">projetos</a><a href="#contato">contato</a></nav>
-    </header>
-
+<main id="conteudo" tabindex="-1">
     <section class="hero" id="inicio">
         <div class="hero-copy">
-            <p class="eyebrow">ERICKE CASTRO / AMAZONAS, BRASIL</p>
-            <h1>Fullstack .NET<br />Software Developer</h1>
-            <div class="hero-actions"><a class="button solid" href="#projetos">./ver-projetos</a><a class="button" href="Curriculo-Ericke-Castro.pdf" download>download --curriculo</a></div>
+            <p class="eyebrow">ERICKE CASTRO / MANAUS, AMAZONAS</p>
+            <h1>Desenvolvedor de Software</h1>
+            <p class="hero-specialty">Kotlin · Android · Desenvolvimento mobile</p>
+            <div class="hero-actions">
+                <a class="button solid" href="#projetos">./ver-projetos</a>
+                <a class="button" href="@PortfolioContent.ResumePath" download>baixar currículo ↓</a>
+            </div>
+            <div class="hero-links" aria-label="Perfis e contato">
+                <a href="@PortfolioContent.GitHubUrl" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                <a href="@PortfolioContent.LinkedInUrl" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+                <a href="#contato">Contato →</a>
+            </div>
         </div>
         <div class="terminal" aria-label="Resumo profissional em formato de terminal">
-            <div class="terminal-bar"><span>ericke@portfolio:~</span><span>[—][□][×]</span></div>
+            <div class="terminal-bar"><span>ericke@portfolio:~</span><span aria-hidden="true">[—][□][×]</span></div>
             <div class="terminal-body">
                 <p><span>ericke:$~</span> whoami</p><p class="output">Ericke Castro</p>
-                <p><span>ericke:$~</span> cat focus.txt</p><p class="output">.NET · Web APIs · Mobile · Software Architecture</p>
-                <p><span>ericke:$~</span> systemctl status career</p><p class="output">● active — building reliable software</p>
-                <p class="prompt"><span>ericke:$~</span> <i aria-hidden="true" /></p>
+                <p><span>ericke:$~</span> cat focus.txt</p><p class="output">Android · Kotlin · Mobile</p>
+                <p><span>ericke:$~</span> cat projects.txt</p><p class="output">DroidKo · Transsend</p>
+                <p><span>ericke:$~</span> cat background.txt</p><p class="output">Sistemas corporativos · APIs REST · .NET · Web</p>
+                <p class="prompt" aria-hidden="true"><span>ericke:$~</span> <i /></p>
             </div>
         </div>
     </section>
 
-    <section class="section about" id="sobre">
-        <div class="section-label"><span>01</span><p>sobre</p></div>
+    <section class="section about" id="sobre" aria-labelledby="sobre-titulo">
+        <div class="section-label"><span aria-hidden="true">01</span><h2 id="sobre-titulo">sobre</h2></div>
         <div class="about-content">
-            <p class="lead">Desenvolvedor .NET</p>
-            <div class="about-grid">
-                <p>Atualmente atuo com desenvolvimento de sistemas e suporte técnico N2 na Secretaria de Segurança Pública do Estado do Amazonas. Participo da criação e evolução de aplicações corporativas Web, Mobile e backend, da modelagem de dados à integração entre interfaces e APIs.</p>
-                <p>Minha experiência é concentrada no ecossistema .NET, com ASP.NET Core, Entity Framework Core e .NET MAUI, apoiada por PostgreSQL e Docker. Busco aplicar Clean Architecture, testes e boas práticas para criar soluções confiáveis, organizadas e preparadas para evoluir.</p>
+            <p class="lead">Experiência em software.<br />Foco atual em Android.</p>
+            <div class="about-text">
+                <p>Sou Desenvolvedor de Software com experiência profissional no desenvolvimento de sistemas corporativos, APIs REST e aplicações multiplataforma. Atualmente atuo como estagiário em desenvolvimento de sistemas e suporte técnico N2 na Secretaria de Segurança Pública do Estado do Amazonas. Venho direcionando minha atuação para Android nativo com Kotlin, aplicando minha experiência prévia em desenvolvimento mobile e backend. Trabalho com MVVM, Clean Architecture, SOLID, integração de APIs, bancos relacionais, Git e testes.</p>
             </div>
-            <div class="facts" aria-label="Informações rápidas"><div><span>formação</span><strong>Ciência da Computação</strong></div><div><span>idiomas</span><strong>Português · Inglês</strong></div><div><span>atuação</span><strong>Web · Backend · Mobile</strong></div></div>
+            <div class="facts" aria-label="Informações rápidas">
+                <div><span>foco atual</span><strong>Android · Kotlin</strong></div>
+                <div><span>experiência</span><strong>Sistemas · APIs · Multiplataforma</strong></div>
+                <div><span>localização</span><strong>Manaus · Amazonas</strong></div>
+            </div>
         </div>
     </section>
 
-    <section class="section" id="stack">
-        <div class="section-label"><span>02</span><p>stack</p></div>
-        <div class="skill-list">@foreach (var skill in Skills) { <div class="skill-row"><h3>@skill.Category</h3><div>@foreach (var item in skill.Items) { <span>@item</span> }</div></div> }</div>
+    <section class="section projects-section" id="projetos" aria-labelledby="projetos-titulo">
+        <div class="section-label"><span aria-hidden="true">02</span><h2 id="projetos-titulo">projetos</h2></div>
+        <div>
+            <p class="section-intro">Android e Kotlin em prática</p>
+            <div class="projects">
+                @for (var index = 0; index < PortfolioContent.FeaturedProjects.Length; index++)
+                {
+                    var project = PortfolioContent.FeaturedProjects[index];
+                    <article class="project">
+                        <div class="project-index" aria-hidden="true">@((index + 1).ToString("D2"))</div>
+                        <div class="project-main">
+                            <p class="project-category">@project.Category</p>
+                            <div class="project-heading"><h3>@project.Name</h3><span>@project.Status</span></div>
+                            <p class="project-description">@project.Description</p>
+                            <p class="project-detail">@project.Detail</p>
+                            <div class="tags">@foreach (var tech in project.Highlights) { <span>@tech</span> }</div>
+                            <a class="project-link" href="@project.Path" aria-label="Ver projeto @project.Name">Ver projeto →</a>
+                        </div>
+                    </article>
+                }
+            </div>
+
+        </div>
     </section>
 
-    <section class="section projects-section" id="projetos">
-        <div class="section-label"><span>03</span><p>projetos</p></div>
-        <div class="projects">@foreach (var project in Projects) { <article class="project">
-            <div class="project-index">@project.Index</div>
-            <div class="project-main"><div class="project-heading"><h2>@project.Name</h2><span>@project.Status</span></div><p class="project-description">@project.Description</p><p class="project-detail">@project.Detail</p><div class="tags">@foreach (var tech in project.Stack) { <span>@tech</span> }</div></div>
-            <a class="project-link" href="@project.Href" target="_blank" rel="noreferrer" aria-label="Abrir @project.Name no GitHub">↗</a>
-        </article> }</div>
+    <section class="section" id="experiencia" aria-labelledby="experiencia-titulo">
+        <div class="section-label"><span aria-hidden="true">03</span><h2 id="experiencia-titulo">experiência</h2></div>
+        <div class="experience-list">
+            <article class="experience">
+                <p class="experience-period"><time datetime="2026-01">Jan/2026</time> — Atual</p>
+                <h3>Estagiário em Desenvolvimento de Sistemas e Suporte Técnico N2</h3>
+                <p class="experience-company">Secretaria de Segurança Pública do Estado do Amazonas (SSP-AM)</p>
+                <ul class="content-list">
+                    <li>Manutenção e evolução de sistemas web, com APIs REST em Node.js/Express e interfaces em React, Vite e Tailwind CSS.</li>
+                    <li>Desenvolvimento de solução corporativa para gestão de ativos de TI e digitalização do inventário patrimonial, com backend em ASP.NET Core e aplicativo Android e Windows em .NET MAUI.</li>
+                    <li>Persistência com Entity Framework Core e PostgreSQL, incluindo relacionamentos e consultas; autenticação JWT e documentação com Swagger/OpenAPI.</li>
+                    <li>Versionamento com Git/GitHub, fluxo de branches e desenvolvimento colaborativo.</li>
+                    <li>Suporte técnico N2 em Windows e Linux, redes TCP/IP e DNS, Active Directory, Kerberos e troubleshooting de hardware e infraestrutura corporativa.</li>
+                </ul>
+            </article>
+            <article class="experience">
+                <p class="experience-period"><time datetime="2022-04">Abr/2022</time> — <time datetime="2026-01">Jan/2026</time></p>
+                <h3>Analista de Monitoramento de Sistemas Críticos</h3>
+                <p class="experience-company">3D Alarmes Monitoramento &amp; Rastreamento LTDA</p>
+                <ul class="content-list">
+                    <li>Monitoramento de telemetria e rastreamento em tempo real com Getrak, SSX Tracking, Segware Cloud e Somaseg.</li>
+                    <li>Acionamento de equipes de pronta-resposta em eventos críticos de segurança.</li>
+                    <li>Relatórios operacionais com Word e Excel e atendimento a clientes e equipes de campo.</li>
+                </ul>
+            </article>
+        </div>
     </section>
 
-    <section class="contact" id="contato">
-        <div class="contact-heading"><p class="eyebrow">CONTATO / NOVAS CONEXÕES</p></div>
+    <section class="section stack-section" id="stack" aria-labelledby="stack-titulo">
+        <div class="section-label"><span aria-hidden="true">04</span><h2 id="stack-titulo">stack</h2></div>
+        <div class="skill-list">
+            @foreach (var skill in PortfolioContent.Skills)
+            {
+                <div class="skill-row">
+                    <h3>@skill.Category</h3>
+                    <ul>@foreach (var item in skill.Items) { <li>@item</li> }</ul>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="contact" id="contato" aria-labelledby="contato-titulo">
+        <div class="contact-heading"><h2 class="eyebrow" id="contato-titulo">CONTATO / CONEXÕES PROFISSIONAIS</h2></div>
         <div class="contact-grid">
-            <a href="mailto:erickevh@hotmail.com"><ContactIcon Type="ContactType.Email" /><span><small>e-mail</small><strong>erickevh@hotmail.com</strong></span><b>↗</b></a>
-            <a href="https://github.com/Erickecastro" target="_blank" rel="noreferrer"><ContactIcon Type="ContactType.GitHub" /><span><small>github</small><strong>@@Erickecastro</strong></span><b>↗</b></a>
-            <a href="https://www.linkedin.com/in/ericke-castro/" target="_blank" rel="noreferrer"><ContactIcon Type="ContactType.LinkedIn" /><span><small>linkedin</small><strong>Ericke Castro</strong></span><b>↗</b></a>
-            <a href="Curriculo-Ericke-Castro.pdf" download><ContactIcon Type="ContactType.Resume" /><span><small>currículo</small><strong>Baixar PDF</strong></span><b>↘</b></a>
+            <a href="@($"mailto:{PortfolioContent.Email}")"><ContactIcon Type="ContactType.Email" /><span><small>e-mail</small><strong>@PortfolioContent.Email</strong></span><b aria-hidden="true">↗</b></a>
+            <a href="@PortfolioContent.GitHubUrl" target="_blank" rel="noopener noreferrer"><ContactIcon Type="ContactType.GitHub" /><span><small>github</small><strong>@@Erickecastro</strong></span><b aria-hidden="true">↗</b></a>
+            <a href="@PortfolioContent.LinkedInUrl" target="_blank" rel="noopener noreferrer"><ContactIcon Type="ContactType.LinkedIn" /><span><small>linkedin</small><strong>Ericke Castro</strong></span><b aria-hidden="true">↗</b></a>
+            <a href="@PortfolioContent.ResumePath" download><ContactIcon Type="ContactType.Resume" /><span><small>currículo</small><strong>Baixar PDF</strong></span><b aria-hidden="true">↘</b></a>
         </div>
     </section>
-    <footer><p>© 2026 Ericke Castro</p><p>Fim :)</p><a href="#inicio">voltar ao topo ↑</a></footer>
 </main>
-
-@code {
-    private static readonly Skill[] Skills =
-    [
-        new("plataforma .net", ["C#", ".NET 10", "ASP.NET Core", "Entity Framework Core", "ASP.NET MVC", ".NET MAUI"]),
-        new("dados", ["PostgreSQL", "SQLite", "LINQ"]),
-        new("architecture", ["Clean Architecture", "SOLID", "MVVM", "APIs REST", "Repository Pattern", "Dependency Injection"]),
-        new("quality + tools", ["xUnit", "Moq", "FluentValidation", "Serilog", "Docker", "Git", "GitHub", "Swagger / OpenAPI", "JWT"])
-    ];
-
-    private static readonly Project[] Projects =
-    [
-        new("01", "Vaguei", "em desenvolvimento", "Plataforma que interpreta currículos, estrutura o perfil profissional e prepara a busca e classificação de vagas por compatibilidade.", "Parser para ODT, DOCX, PDF e TXT, análise de competências e arquitetura modular preparada para múltiplas fontes de vagas.", ["C#", ".NET 10", "LINQ", "xUnit", "Regex", "XML"], "https://github.com/Erickecastro/Vaguei"),
-        new("02", "AssetFlow", "em desenvolvimento", "Sistema corporativo multiplataforma para centralizar inventário e acompanhar o ciclo de vida de ativos de TI.", "Gestão patrimonial, histórico de movimentações, API REST e aplicativo móvel sob Clean Architecture e MVVM.", ["ASP.NET Core", ".NET MAUI", "EF Core", "PostgreSQL", "JWT", "Docker"], "https://github.com/Erickecastro/AssetFlow"),
-        new("03", "FinTrack", "em desenvolvimento", "Sistema de finanças pessoais para organizar receitas, despesas e categorias, com insights financeiros assistidos por IA.", "Backend Web API, cliente .NET MAUI e integração planejada com Gemini, com validação, observabilidade e testes.", ["ASP.NET Core", ".NET MAUI", "PostgreSQL", "Gemini API", "xUnit", "Moq"], "https://github.com/Erickecastro/FinTrack")
-    ];
-
-    private sealed record Skill(string Category, string[] Items);
-    private sealed record Project(string Index, string Name, string Status, string Description, string Detail, string[] Stack, string Href);
-}
