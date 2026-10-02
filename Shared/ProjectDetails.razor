@@ -1,0 +1,69 @@
+<PageMetadata Title="@($"{CurrentProject.Name} | Ericke Castro")" Description="@CurrentProject.Detail" Path="@CurrentProject.Path" />
+
+<main class="case-study" id="conteudo" tabindex="-1">
+    <section class="case-hero" aria-labelledby="projeto-titulo">
+        <a class="back-link" href="/#projetos">← voltar aos projetos</a>
+        <p class="eyebrow">@CurrentProject.Category</p>
+        <h1 id="projeto-titulo">@CurrentProject.Name</h1>
+        <p class="case-description">@CurrentProject.Description</p>
+        @if (CurrentProject.RepositoryUrl is null)
+        {
+            <p class="source-note">Código-fonte privado — projeto atualmente em desenvolvimento.</p>
+        }
+        @if (CurrentProject.RepositoryUrl is { } repositoryUrl)
+        {
+            <a class="button" href="@repositoryUrl" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        }
+    </section>
+
+    <section class="section case-section" aria-labelledby="objetivo-titulo">
+        <div class="section-label"><span aria-hidden="true">01</span><h2 id="objetivo-titulo">objetivo</h2></div>
+        <p class="case-objective">@CurrentProject.Objective</p>
+    </section>
+
+    <section class="section case-section" aria-labelledby="funcionalidades-titulo">
+        <div class="section-label"><span aria-hidden="true">02</span><h2 id="funcionalidades-titulo">funcionalidades</h2></div>
+        <ul class="content-list feature-list">
+            @foreach (var feature in CurrentProject.Features) { <li>@feature</li> }
+        </ul>
+    </section>
+
+    <section class="section case-section" aria-labelledby="engenharia-titulo">
+        <div class="section-label"><span aria-hidden="true">03</span><h2 id="engenharia-titulo">engenharia</h2></div>
+        <div class="technical-sections">
+            @foreach (var section in CurrentProject.TechnicalSections)
+            {
+                <section><h3>@section.Title</h3><p>@section.Description</p></section>
+            }
+        </div>
+    </section>
+
+    <section class="section case-section" aria-labelledby="tecnologias-titulo">
+        <div class="section-label"><span aria-hidden="true">04</span><h2 id="tecnologias-titulo">tecnologias</h2></div>
+        <div class="tags case-tags">@foreach (var tech in CurrentProject.Stack) { <span>@tech</span> }</div>
+    </section>
+
+    @if (CurrentProject.Screenshots.Length > 0)
+    {
+        <section class="section case-section" aria-labelledby="imagens-titulo">
+            <div class="section-label"><h2 id="imagens-titulo">imagens</h2></div>
+            <div class="project-gallery">
+                @foreach (var screenshot in CurrentProject.Screenshots)
+                {
+                    <img src="@screenshot.Source" alt="@screenshot.Alt" loading="lazy" />
+                }
+            </div>
+        </section>
+    }
+
+    <div class="case-actions">
+        <a class="button solid" href="@OtherProject.Path">Conhecer @OtherProject.Name →</a>
+        <a class="button" href="/#contato">Contato</a>
+    </div>
+</main>
+
+@code {
+    [Parameter, EditorRequired] public Project CurrentProject { get; set; } = default!;
+
+    private Project OtherProject => PortfolioContent.FeaturedProjects.First(project => project != CurrentProject);
+}
