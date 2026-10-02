@@ -1,3 +1,25 @@
 @inherits LayoutComponentBase
+@using Microsoft.JSInterop
+@inject IJSRuntime JS
 
+<a class="skip-link" href="#conteudo" @onclick="FocusContent" @onclick:preventDefault="true">Pular para o conteúdo</a>
+<header class="site-header">
+    <a class="brand" href="/#inicio" aria-label="Ericke Castro — início"><span>~/</span> ericke</a>
+    <nav aria-label="Navegação principal">
+        <a href="/#sobre">sobre</a>
+        <a href="/#projetos">projetos</a>
+        <a href="/#experiencia">experiência</a>
+        <a href="/#stack">stack</a>
+        <a href="/#contato">contato</a>
+    </nav>
+</header>
 @Body
+<footer>
+    <p>© @DateTime.UtcNow.Year Ericke Castro</p>
+    <p class="footer-smile">=)</p>
+    <a href="/#inicio">voltar ao início ↑</a>
+</footer>
+
+@code {
+    private async Task FocusContent() => await JS.InvokeVoidAsync("portfolioNavigation.focusContent");
+}
